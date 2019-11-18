@@ -24,7 +24,7 @@ public class VehicleRoutesController {
     @RequestMapping(value = { "/vehicleList" }, method = RequestMethod.GET)
     public String vehicleList(Model model) {
         model.addAttribute("vehicles", vehicles);
-        return "vehicleList";
+        return "vehicleList"; //vehicleList string is the view or template
     }
 
     //Vehicles/{id}

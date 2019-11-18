@@ -7,8 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+
 @RestController
 public class VehicleRestController {
+
+
+// @Autowired annotation tells Spring where an injection need to occur
 
     @Autowired
     private VehicleDao vehicleDao;
