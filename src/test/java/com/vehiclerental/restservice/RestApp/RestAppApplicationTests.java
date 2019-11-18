@@ -1,4 +1,4 @@
-package com.vehiculerental.restservice.RestApp;
+package com.vehiclerental.restservice.RestApp;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

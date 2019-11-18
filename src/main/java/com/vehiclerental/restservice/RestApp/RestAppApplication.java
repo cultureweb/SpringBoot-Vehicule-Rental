@@ -1,4 +1,4 @@
-package com.vehiculerental.restservice.RestApp;
+package com.vehiclerental.restservice.RestApp;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
