@@ -1,6 +1,9 @@
 package com.vehiclerental.restservice.RestApp.controller;
 
+import javax.validation.Valid;
+
 import com.vehiclerental.restservice.RestApp.model.Vehicle;
+import org.springframework.validation.BindingResult;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,6 +36,17 @@ public class VehicleRoutesController {
 
             Vehicle vehicle = new Vehicle(5, new String("Ford"), new String("Escort"));
             return "vehicles";
+    }
+
+    //Vehicles/
+    @PostMapping(value = "vehicles/addnew")
+    public String checkVehicleInfo(@valid VehicleForm vehicleForm, BindingResult, bindingResult){
+
+            if (bindingResult.hasErrors()){
+                return "form";
+            }
+            model.addAttribute("vehicles", vehicles);
+            return "vehicles"
     }
 
 }
