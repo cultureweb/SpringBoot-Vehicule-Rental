@@ -2,7 +2,7 @@
 
 ![](assets/microservices.jpg)
 
-## What are Microservices?
+## C'est quoi les Microservices?
 
 Les microservices sont un style architectural qui développe une application unique sous la forme d'un ensemble de petits services. Chaque service s'exécute dans son propre processus. Les services communiquent avec les clients, et souvent entre eux, à l'aide de protocoles légers, souvent par messagerie ou HTTP.
 
