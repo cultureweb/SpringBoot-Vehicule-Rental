@@ -15,7 +15,7 @@
    would be @{/edit.html}
    -->
 
-    <form th:action="@{/addVehicule}" th:object="${vehiculeForm}" method="POST">
+    <form action="#" th:action="@{/}" th:object="${vehicleForm}" method="POST">
       <table>
         <tr>
           <td>Brand name:</td>
@@ -27,16 +27,13 @@
         <tr>
           <td>Type name:</td>
           <td><input type="text" th:field="*{type}" /></td>
-          <td
-            th:if="${#fields.hasErrors('type')}"
-            th:errors="*{type}"
-            style="color:red;font-style:italic;"
-          >
+         <td th:if="${#fields.hasErrors('type')}" th:errors="*{type}">     <!-- style="color:red;font-style:italic;"-->
+
             Type Error
           </td>
         </tr>
         <tr>
-          <td><button type="submit" value="Create">Submit</button></td>
+          <td><button type="submit" >Submit</button></td>
         </tr>
       </table>
     </form>

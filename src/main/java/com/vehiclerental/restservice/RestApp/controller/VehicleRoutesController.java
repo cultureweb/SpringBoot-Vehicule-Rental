@@ -1,21 +1,29 @@
 package com.vehiclerental.restservice.RestApp.controller;
 
-import javax.validation.Valid;
-
+import com.vehiclerental.restservice.RestApp.form.VehicleForm;
 import com.vehiclerental.restservice.RestApp.model.Vehicle;
-import org.springframework.validation.BindingResult;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
 @Controller
-public class VehicleRoutesController {
+public class VehicleRoutesController implements WebMvcConfigurer {
+
+    @Override
+    public void addViewControllers(ViewControllerRegistry registry) {
+        registry.addViewController("/results").setViewName("results");
+    }
+//    @GetMapping("vehicles/form/addnew")
+//    public String showForm(VehicleForm vehicleForm) {
+//        return "vehicleForm";
+//    }
 
     public static List<Vehicle> vehicles = new ArrayList<>();
     static {
@@ -38,15 +46,23 @@ public class VehicleRoutesController {
             return "vehicles";
     }
 
-    //Vehicles/
-    @PostMapping(value = "vehicles/addnew")
-    public String checkVehicleInfo(@valid VehicleForm vehicleForm, BindingResult, bindingResult){
+    @GetMapping(value = "vehicles/form/addnew")
+    public String form(Model model) {
+
+        model.addAttribute("vehicleForm", new VehicleForm());
+        return "vehicleForm";
+    }
+
+
+
+    @PostMapping(value = "vehicles")
+    public String checkVehicleInfo(@Valid VehicleForm vehicleForm, BindingResult bindingResult){
 
             if (bindingResult.hasErrors()){
                 return "form";
             }
-            model.addAttribute("vehicles", vehicles);
-            return "vehicles"
+            //model.addAttribute("vehicles", vehicles);
+            return "redirect:/results";
     }
 
 }

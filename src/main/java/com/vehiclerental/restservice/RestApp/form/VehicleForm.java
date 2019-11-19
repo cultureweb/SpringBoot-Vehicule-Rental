@@ -28,4 +28,8 @@ public class VehicleForm {
     public void setType(String type) {
         this.type = type;
     }
+
+    public String toString() {
+        return "Vehicle(brand: " + this.brand + ", type: " + this.type + ")";
+    }
 }
