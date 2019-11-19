@@ -1,0 +1,5 @@
+com.vehiclerental.restservice.RestApp
+com.vehiclerental.restservice.RestApp.controller
+com.vehiclerental.restservice.RestApp.dao
+com.vehiclerental.restservice.RestApp.form
+com.vehiclerental.restservice.RestApp.model

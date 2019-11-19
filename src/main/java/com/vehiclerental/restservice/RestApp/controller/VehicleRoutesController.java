@@ -20,32 +20,46 @@ public class VehicleRoutesController implements WebMvcConfigurer {
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/results").setViewName("results");
     }
-//    @GetMapping("vehicles/form/addnew")
-//    public String showForm(VehicleForm vehicleForm) {
-//        return "vehicleForm";
-//    }
+
 
     public static List<Vehicle> vehicles = new ArrayList<>();
+
     static {
         vehicles.add(new Vehicle(1, new String("Renault"), new String("Twingo")));
         vehicles.add(new Vehicle(2, new String("Mercedes"), new String("ClasseA")));
         vehicles.add(new Vehicle(3, new String("Tesla"), new String("S Model")));
     }
-    //VehiclesList
-    @RequestMapping(value = { "/vehicleList" }, method = RequestMethod.GET)
+
+    /**
+     * Return vehicles List.
+     *
+     * @return L'URL .
+     */
+
+    @RequestMapping(value = {"/vehicleList"}, method = RequestMethod.GET)
     public String vehicleList(Model model) {
         model.addAttribute("vehicles", vehicles);
         return "vehicleList"; //vehicleList string is the view or template
     }
 
-    //Vehicles/{id}
-    @GetMapping(value = "vehicles/{id}")
-    public String displayOneVehicle(@PathVariable int id){
+    /**
+     * affiche le vehicule
+     *
+     * @param id selon id du vehicule.
+     */
 
-            Vehicle vehicle = new Vehicle(5, new String("Ford"), new String("Escort"));
-            return "vehicles";
+    @GetMapping(value = "vehicles/{id}")
+    public String displayOneVehicle(@PathVariable int id) {
+
+        Vehicle vehicle = new Vehicle(5, new String("Ford"), new String("Escort"));
+        return "vehicles";
     }
 
+    /**
+     * renvoie le formulaire.
+     *
+     * @since 3.0
+     */
     @GetMapping(value = "vehicles/form/addnew")
     public String form(Model model) {
 
@@ -53,16 +67,20 @@ public class VehicleRoutesController implements WebMvcConfigurer {
         return "vehicleForm";
     }
 
-
+    /**
+     * Valide le formulaire
+     *
+     * @param vehicleForm et return results.
+     */
 
     @PostMapping(value = "vehicles")
-    public String checkVehicleInfo(@Valid VehicleForm vehicleForm, BindingResult bindingResult){
+    public String checkVehicleInfo(@Valid VehicleForm vehicleForm, BindingResult bindingResult, Model model) {
+        model.addAttribute("vehicleForm", vehicleForm);
+        if (bindingResult.hasErrors()) {
+            return "vehicleForm";
+        }
 
-            if (bindingResult.hasErrors()){
-                return "form";
-            }
-            //model.addAttribute("vehicles", vehicles);
-            return "redirect:/results";
+        return "redirect:/results";
     }
 
 }

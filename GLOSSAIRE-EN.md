@@ -38,3 +38,6 @@ model.addAttribute("products", products);
 ```
 
 "products" is just a name which you can use it in your view get the value with \${products}
+
+[Annotations Cheat Sheet en pdf](https://files.jrebel.com/pdf/zt_spring_annotations_cheat_sheet.pdf)
+![](assets/cheatSheet.png)

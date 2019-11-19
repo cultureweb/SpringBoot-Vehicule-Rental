@@ -24,3 +24,7 @@ In order to be able to work with Spring MVC, let's deal with the Maven dependenc
 ```
 
 To get the latest version of the library, have a look at [spring-webmvc on Maven Central.](https://mvnrepository.com/artifact/org.springframework/spring-webmvc)
+
+## Ressources
+
+[Get started using Spring Boot to write Spring applications that just run](https://developer.ibm.com/tutorials/j-spring-boot-basics-perry/)
