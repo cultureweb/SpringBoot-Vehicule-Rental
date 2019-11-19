@@ -29,4 +29,4 @@ To get the latest version of the library, have a look at [spring-webmvc on Maven
 ![](assets/swagger.png)
 ## Ressources
 
-[Get started using Spring Boot to write Spring applications that just run](https://developer.ibm.com/tutorials/j-spring-boot-basics-perry/)
+[Get started using Spring Boot to write Spring applications that just run](https://developer.ibm.com/tutorials/j-spring-boot-basics-perry)
