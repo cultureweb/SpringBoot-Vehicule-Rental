@@ -23,7 +23,7 @@ public class VehicleRestController {
 
     }
     @GetMapping(value = "/api/v1/vehicles/{id}")
-    public Vehicle getVehicle(@PathVariable  int id){
+    public Vehicle getVehicle(@PathVariable  String id){
         return vehicleDao.findById(id);
 
     }
@@ -33,11 +33,11 @@ public class VehicleRestController {
 
     }
     @PutMapping(value = "/api/v1/vehicles/{id}")
-    public Vehicle updateVehicle(@PathVariable int id,  @RequestBody Vehicle vehicle){
+    public Vehicle updateVehicle(@PathVariable String id,  @RequestBody Vehicle vehicle){
         return vehicleDao.update(id, vehicle);
     }
     @DeleteMapping (value = "/api/v1/vehicles/{id}")
-    public Vehicle deleteVehicle(@PathVariable int id){
+    public Vehicle deleteVehicle(@PathVariable String id){
         return vehicleDao.delete(id);
     }
 }

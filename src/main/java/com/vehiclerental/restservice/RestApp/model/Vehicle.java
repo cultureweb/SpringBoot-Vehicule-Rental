@@ -1,8 +1,10 @@
 package com.vehiclerental.restservice.RestApp.model;
 
+import java.util.UUID;
+
 public class Vehicle {
 
-    private int id;
+    private String id;
     private String brand;
     private String type;
 
@@ -10,17 +12,20 @@ public class Vehicle {
 
     }
 
-    public Vehicle(int id, String brand, String type) {
+    public Vehicle(String id, String brand, String type) {
         this.id = id;
         this.brand = brand;
         this.type = type;
     }
-    public int getId() {
+    public String getId() {
         return id;
     }
 
     public String getBrand() {
         return brand;
+    }
+    public void generateId() {
+        this.id = UUID.randomUUID().toString();
     }
 
     public void setBrand(String brand) {

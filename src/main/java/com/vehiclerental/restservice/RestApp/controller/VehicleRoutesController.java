@@ -28,11 +28,7 @@ public class VehicleRoutesController implements WebMvcConfigurer {
 
 
 
-    /**
-     * Return vehicles List.
-     *
-     * @return L'URL .
-     */
+
     //Récupérer la liste des vehicles
     @RequestMapping(value="/vehicleList", method=RequestMethod.GET)
      List<Vehicle>vehicleList() {
@@ -45,11 +41,7 @@ public class VehicleRoutesController implements WebMvcConfigurer {
 //        return "vehicleList"; //vehicleList string is the view or template
 //    }
 
-    /**
-     * affiche le vehicule
-     *
-     * @param id selon id du vehicule.
-     */
+
 
 //    @GetMapping(value = "vehicles/{id}")
 //    public String displayOneVehicle(@PathVariable int id) {
@@ -58,11 +50,7 @@ public class VehicleRoutesController implements WebMvcConfigurer {
 //        return "vehicles";
 //    }
 
-    /**
-     * renvoie le formulaire.
-     *
-     * @since 3.0
-     */
+
     @GetMapping(value = "vehicles/form/addnew")
     public String form(Model model) {
 
@@ -70,20 +58,16 @@ public class VehicleRoutesController implements WebMvcConfigurer {
         return "vehicleForm";
     }
 
-    /**
-     * Valide le formulaire
-     *
-     * @param vehicleForm et return results.
-     */
 
-    @PostMapping(value = "vehicles")
-    public String checkVehicleInfo(@Valid VehicleForm vehicleForm, BindingResult bindingResult, Model model) {
-        model.addAttribute("vehicleForm", vehicleForm);
-        if (bindingResult.hasErrors()) {
-            return "vehicleForm";
-        }
 
-        return "redirect:/results";
-    }
+//    @PostMapping(value = "vehicles")
+//    public String checkVehicleInfo(@Valid VehicleForm vehicleForm, BindingResult bindingResult, Model model) {
+//        model.addAttribute("vehicleForm", vehicleForm);
+//        if (bindingResult.hasErrors()) {
+//            return "vehicleForm";
+//        }
+//
+//        return "redirect:/results";
+//    }
 
 }

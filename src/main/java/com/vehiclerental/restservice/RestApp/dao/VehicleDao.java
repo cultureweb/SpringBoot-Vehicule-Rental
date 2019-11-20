@@ -5,9 +5,9 @@ import java.util.List;
 
 public interface VehicleDao {
     List<Vehicle> findAll();
-    Vehicle findById(int id);
+    Vehicle findById(String id);
     Vehicle save(Vehicle vehicle);
-    Vehicle update(int id, Vehicle vehicle);
-    Vehicle delete(int id);
+    Vehicle update(String id, Vehicle vehicle);
+    Vehicle delete(String id);
 
 }
