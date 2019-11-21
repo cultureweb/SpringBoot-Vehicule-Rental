@@ -3,8 +3,10 @@ package com.vehiclerental.restservice.RestApp.controller;
 import com.vehiclerental.restservice.RestApp.dao.VehicleDao;
 import com.vehiclerental.restservice.RestApp.model.Vehicle;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,12 +26,12 @@ public class VehicleRestController {
 
     }
     @GetMapping(value = "/api/v1/vehicles/{id}")
-    public Vehicle getVehicle(@PathVariable  String id){
+    public Vehicle getVehicle(@PathVariable  String id, HttpServletResponse response){
         Vehicle vehicle = null;
         try {
-            vehicle = vehicleDao.findById(id).orElseThrow(()-> new Exception("Not found"));
+            vehicle = vehicleDao.findById(id).orElseThrow(()-> new Exception());
         } catch (Exception e) {
-            e.printStackTrace();
+            response.setStatus(HttpStatus.NO_CONTENT.value());
         }
         return vehicle;
 
@@ -41,9 +43,14 @@ public class VehicleRestController {
 
     }
     @PutMapping(value = "/api/v1/vehicles/{id}")
-    public Vehicle updateVehicle(@PathVariable String id,  @RequestBody Vehicle vehicle){
+    public Vehicle updateVehicle(@PathVariable String id,  @RequestBody Vehicle vehicle, HttpServletResponse response){
 
-        Vehicle vehicleToEdit = getVehicle(id);
+        Vehicle vehicleToEdit = null;
+        try {
+            vehicleToEdit = vehicleDao.findById(id).orElseThrow(()-> new Exception());
+        } catch (Exception e) {
+            response.setStatus(HttpStatus.NO_CONTENT.value());
+        }
 
         if (vehicleToEdit != null) {
             if (vehicle.getType() != null) {
@@ -56,9 +63,14 @@ public class VehicleRestController {
         return vehicleDao.saveAndFlush(vehicleToEdit);
     }
     @DeleteMapping (value = "/api/v1/vehicles/{id}")
-    public void deleteVehicle(@PathVariable String id) {
+    public void deleteVehicle(@PathVariable String id, HttpServletResponse response) {
 
-        Vehicle vehicleToDelete = getVehicle(id);
+        Vehicle vehicleToDelete =  null;
+        try {
+            vehicleToDelete = vehicleDao.findById(id).orElseThrow(()-> new Exception());
+        } catch (Exception e) {
+            response.setStatus(HttpStatus.NO_CONTENT.value());
+        }
 
         vehicleDao.delete(vehicleToDelete);
     }
