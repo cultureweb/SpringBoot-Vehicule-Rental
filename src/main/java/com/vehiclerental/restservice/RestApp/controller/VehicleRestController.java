@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class VehicleRestController {
@@ -24,20 +25,41 @@ public class VehicleRestController {
     }
     @GetMapping(value = "/api/v1/vehicles/{id}")
     public Vehicle getVehicle(@PathVariable  String id){
-        return vehicleDao.findById(id);
+        Vehicle vehicle = null;
+        try {
+            vehicle = vehicleDao.findById(id).orElseThrow(()-> new Exception("Not found"));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return vehicle;
 
     }
     @PostMapping(value = "/api/v1/vehicles")
     public Vehicle createVehicle(@RequestBody Vehicle vehicle){
+        vehicle.generateId();
         return vehicleDao.save(vehicle);
 
     }
     @PutMapping(value = "/api/v1/vehicles/{id}")
     public Vehicle updateVehicle(@PathVariable String id,  @RequestBody Vehicle vehicle){
-        return vehicleDao.update(id, vehicle);
+
+        Vehicle vehicleToEdit = getVehicle(id);
+
+        if (vehicleToEdit != null) {
+            if (vehicle.getType() != null) {
+                vehicleToEdit.setType(vehicle.getType());
+            }
+            if (vehicle.getBrand() != null) {
+                vehicleToEdit.setBrand(vehicle.getBrand());
+            }
+        }
+        return vehicleDao.saveAndFlush(vehicleToEdit);
     }
     @DeleteMapping (value = "/api/v1/vehicles/{id}")
-    public Vehicle deleteVehicle(@PathVariable String id){
-        return vehicleDao.delete(id);
+    public void deleteVehicle(@PathVariable String id) {
+
+        Vehicle vehicleToDelete = getVehicle(id);
+
+        vehicleDao.delete(vehicleToDelete);
     }
 }
